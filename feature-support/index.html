@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://py.iceberg.apache.org/feature-support/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Feature support - PyIceberg</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Feature support";
+        var mkdocs_page_input_path = "feature-support.md";
+        var mkdocs_page_url = "/feature-support/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> PyIceberg
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../configuration/">Configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cli/">CLI</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api/">API</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Contributing</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../contributing/">Contributing</a>
+                  </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Feature support</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#metadata">Metadata</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#types">Types</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#expressions">Expressions</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Releases</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../verify-release/">Verify a release</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../how-to-release/">How to release</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">PyIceberg</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Feature support</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <!--
+ - Licensed to the Apache Software Foundation (ASF) under one or more
+ - contributor license agreements.  See the NOTICE file distributed with
+ - this work for additional information regarding copyright ownership.
+ - The ASF licenses this file to You under the Apache License, Version 2.0
+ - (the "License"); you may not use this file except in compliance with
+ - the License.  You may obtain a copy of the License at
+ -
+ -   http://www.apache.org/licenses/LICENSE-2.0
+ -
+ - Unless required by applicable law or agreed to in writing, software
+ - distributed under the License is distributed on an "AS IS" BASIS,
+ - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ - See the License for the specific language governing permissions and
+ - limitations under the License.
+ -->
+
+<h1 id="feature-support">Feature Support</h1>
+<p>The goal is that the python library will provide a functional, performant subset of the Java library. The initial focus has been on reading table metadata and provide a convenient CLI to go through the catalog.</p>
+<h2 id="metadata">Metadata</h2>
+<table>
+<thead>
+<tr>
+<th align="left">Operation</th>
+<th align="center">Java</th>
+<th align="center">Python</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Get Schema</td>
+<td align="center">X</td>
+<td align="center">X</td>
+</tr>
+<tr>
+<td align="left">Get Snapshots</td>
+<td align="center">X</td>
+<td align="center">X</td>
+</tr>
+<tr>
+<td align="left">Plan Scan</td>
+<td align="center">X</td>
+<td align="center">X</td>
+</tr>
+<tr>
+<td align="left">Plan Scan for Snapshot</td>
+<td align="center">X</td>
+<td align="center">X</td>
+</tr>
+<tr>
+<td align="left">Update Current Snapshot</td>
+<td align="center">X</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Create Table</td>
+<td align="center">X</td>
+<td align="center">X</td>
+</tr>
+<tr>
+<td align="left">Rename Table</td>
+<td align="center">X</td>
+<td align="center">X</td>
+</tr>
+<tr>
+<td align="left">Drop Table</td>
+<td align="center">X</td>
+<td align="center">X</td>
+</tr>
+<tr>
+<td align="left">Alter Table</td>
+<td align="center">X</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Set Table Properties</td>
+<td align="center">X</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Create Namespace</td>
+<td align="center">X</td>
+<td align="center">X</td>
+</tr>
+<tr>
+<td align="left">Drop Namespace</td>
+<td align="center">X</td>
+<td align="center">X</td>
+</tr>
+<tr>
+<td align="left">Set Namespace Properties</td>
+<td align="center">X</td>
+<td align="center">X</td>
+</tr>
+</tbody>
+</table>
+<h2 id="types">Types</h2>
+<p>The types are kept in <code>pyiceberg.types</code>.</p>
+<p>Primitive types:</p>
+<ul>
+<li><code>BooleanType</code></li>
+<li><code>StringType</code></li>
+<li><code>IntegerType</code></li>
+<li><code>LongType</code></li>
+<li><code>FloatType</code></li>
+<li><code>DoubleType</code></li>
+<li><code>DateType</code></li>
+<li><code>TimeType</code></li>
+<li><code>TimestampType</code></li>
+<li><code>TimestamptzType</code></li>
+<li><code>BinaryType</code></li>
+<li><code>UUIDType</code></li>
+</ul>
+<p>Complex types:</p>
+<ul>
+<li><code>StructType</code></li>
+<li><code>ListType</code></li>
+<li><code>MapType</code></li>
+<li><code>FixedType(16)</code></li>
+<li><code>DecimalType(8, 3)</code></li>
+</ul>
+<h2 id="expressions">Expressions</h2>
+<p>The expressions are kept in <code>pyiceberg.expressions</code>.</p>
+<ul>
+<li><code>IsNull</code></li>
+<li><code>NotNull</code></li>
+<li><code>IsNaN</code></li>
+<li><code>NotNaN</code></li>
+<li><code>In</code></li>
+<li><code>NotIn</code></li>
+<li><code>EqualTo</code></li>
+<li><code>NotEqualTo</code></li>
+<li><code>GreaterThanOrEqual</code></li>
+<li><code>GreaterThan</code></li>
+<li><code>LessThanOrEqual</code></li>
+<li><code>LessThan</code></li>
+<li><code>And</code></li>
+<li><code>Or</code></li>
+<li><code>Not</code></li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../contributing/" class="btn btn-neutral float-left" title="Contributing"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../verify-release/" class="btn btn-neutral float-right" title="Verify a release">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../contributing/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../verify-release/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

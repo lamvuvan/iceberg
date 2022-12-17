@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="None" /><link rel="canonical" href="https://py.iceberg.apache.org/" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>PyIceberg</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Home";
+        var mkdocs_page_input_path = "index.md";
+        var mkdocs_page_url = "/";
+      </script>
+    
+    <script src="js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> PyIceberg
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href=".">Home</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#install">Install</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="configuration/">Configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="cli/">CLI</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="api/">API</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Contributing</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="contributing/">Contributing</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="feature-support/">Feature support</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Releases</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="verify-release/">Verify a release</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="how-to-release/">How to release</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">PyIceberg</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Home</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <!--
+ - Licensed to the Apache Software Foundation (ASF) under one or more
+ - contributor license agreements.  See the NOTICE file distributed with
+ - this work for additional information regarding copyright ownership.
+ - The ASF licenses this file to You under the Apache License, Version 2.0
+ - (the "License"); you may not use this file except in compliance with
+ - the License.  You may obtain a copy of the License at
+ -
+ -   http://www.apache.org/licenses/LICENSE-2.0
+ -
+ - Unless required by applicable law or agreed to in writing, software
+ - distributed under the License is distributed on an "AS IS" BASIS,
+ - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ - See the License for the specific language governing permissions and
+ - limitations under the License.
+ -->
+
+<h1 id="pyiceberg">PyIceberg</h1>
+<p>PyIceberg is a Python implementation for accessing Iceberg tables, without the need of a JVM.</p>
+<h2 id="install">Install</h2>
+<p>You can install the latest release version from pypi:</p>
+<pre><code class="language-sh">pip3 install &quot;pyiceberg[s3fs,hive]&quot;
+</code></pre>
+<p>Install it directly for Github (not recommended), but sometimes handy:</p>
+<pre><code>pip install &quot;git+https://github.com/apache/iceberg.git#subdirectory=python&amp;egg=pyiceberg[s3fs]&quot;
+</code></pre>
+<p>Or clone the repository for local development:</p>
+<pre><code class="language-sh">git clone https://github.com/apache/iceberg.git
+cd iceberg/python
+pip3 install -e &quot;.[s3fs,hive]&quot;
+</code></pre>
+<p>You can mix and match optional dependencies depending on your needs:</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description:</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hive</td>
+<td>Support for the Hive metastore</td>
+</tr>
+<tr>
+<td>glue</td>
+<td>Support for AWS Glue</td>
+</tr>
+<tr>
+<td>pyarrow</td>
+<td>PyArrow as a FileIO implementation to interact with the object store</td>
+</tr>
+<tr>
+<td>duckdb</td>
+<td>Installs both PyArrow and DuckDB</td>
+</tr>
+<tr>
+<td>s3fs</td>
+<td>S3FS as a FileIO implementation to interact with the object store</td>
+</tr>
+<tr>
+<td>snappy</td>
+<td>Support for snappy Avro compression</td>
+</tr>
+</tbody>
+</table>
+<p>You either need to install <code>s3fs</code> or <code>pyarrow</code> for fetching files.</p>
+<p>There is both a <a href="cli/">CLI</a> and <a href="api/">Python API</a> available.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="configuration/" class="btn btn-neutral float-right" title="Configuration">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+      <span><a href="configuration/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme_extra.js" defer></script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.4.2
+Build Date UTC : 2022-12-17 08:15:42.594263+00:00
+-->

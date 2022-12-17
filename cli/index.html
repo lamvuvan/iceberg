@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://py.iceberg.apache.org/cli/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>CLI - PyIceberg</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "CLI";
+        var mkdocs_page_input_path = "cli.md";
+        var mkdocs_page_url = "/cli/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> PyIceberg
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../configuration/">Configuration</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">CLI</a>
+    <ul class="current">
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api/">API</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Contributing</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../contributing/">Contributing</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../feature-support/">Feature support</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Releases</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../verify-release/">Verify a release</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../how-to-release/">How to release</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">PyIceberg</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>CLI</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <!--
+  - Licensed to the Apache Software Foundation (ASF) under one
+  - or more contributor license agreements.  See the NOTICE file
+  - distributed with this work for additional information
+  - regarding copyright ownership.  The ASF licenses this file
+  - to you under the Apache License, Version 2.0 (the
+  - "License"); you may not use this file except in compliance
+  - with the License.  You may obtain a copy of the License at
+  -
+  -   http://www.apache.org/licenses/LICENSE-2.0
+  -
+  - Unless required by applicable law or agreed to in writing,
+  - software distributed under the License is distributed on an
+  - "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  - KIND, either express or implied.  See the License for the
+  - specific language governing permissions and limitations
+  - under the License.
+  -->
+
+<h1 id="python-cli">Python CLI</h1>
+<p>Pyiceberg comes with a CLI that's available after installing the <code>pyiceberg</code> package.</p>
+<p>You can pass the path to the Catalog using the <code>--uri</code> and <code>--credential</code> argument, but it is recommended to setup a <code>~/.pyiceberg.yaml</code> config as described in the <a href="../configuration/">Catalog</a> section.</p>
+<pre><code class="language-sh">➜  pyiceberg --help
+Usage: pyiceberg [OPTIONS] COMMAND [ARGS]...
+
+Options:
+--catalog TEXT
+--verbose BOOLEAN
+--output [text|json]
+--uri TEXT
+--credential TEXT
+--help                Show this message and exit.
+
+Commands:
+describe    Describes a namespace xor table
+drop        Operations to drop a namespace or table
+list        Lists tables or namespaces
+location    Returns the location of the table
+properties  Properties on tables/namespaces
+rename      Renames a table
+schema      Gets the schema of the table
+spec        Returns the partition spec of the table
+uuid        Returns the UUID of the table
+</code></pre>
+<p>This example assumes that you have a default catalog set. If you want to load another catalog, for example, the rest example above. Then you need to set <code>--catalog rest</code>.</p>
+<pre><code class="language-sh">➜  pyiceberg list
+default
+nyc
+</code></pre>
+<pre><code class="language-sh">➜  pyiceberg list nyc
+nyc.taxis
+</code></pre>
+<pre><code class="language-sh">➜  pyiceberg describe nyc.taxis
+Table format version  1
+Metadata location     file:/.../nyc.db/taxis/metadata/00000-aa3a3eac-ea08-4255-b890-383a64a94e42.metadata.json
+Table UUID            6cdfda33-bfa3-48a7-a09e-7abb462e3460
+Last Updated          1661783158061
+Partition spec        []
+Sort order            []
+Current schema        Schema, id=0
+├── 1: VendorID: optional long
+├── 2: tpep_pickup_datetime: optional timestamptz
+├── 3: tpep_dropoff_datetime: optional timestamptz
+├── 4: passenger_count: optional double
+├── 5: trip_distance: optional double
+├── 6: RatecodeID: optional double
+├── 7: store_and_fwd_flag: optional string
+├── 8: PULocationID: optional long
+├── 9: DOLocationID: optional long
+├── 10: payment_type: optional long
+├── 11: fare_amount: optional double
+├── 12: extra: optional double
+├── 13: mta_tax: optional double
+├── 14: tip_amount: optional double
+├── 15: tolls_amount: optional double
+├── 16: improvement_surcharge: optional double
+├── 17: total_amount: optional double
+├── 18: congestion_surcharge: optional double
+└── 19: airport_fee: optional double
+Current snapshot      Operation.APPEND: id=5937117119577207079, schema_id=0
+Snapshots             Snapshots
+└── Snapshot 5937117119577207079, schema 0: file:/.../nyc.db/taxis/metadata/snap-5937117119577207079-1-94656c4f-4c66-4600-a4ca-f30377300527.avro
+Properties            owner                 root
+write.format.default  parquet
+</code></pre>
+<p>Or output in JSON for automation:</p>
+<pre><code class="language-sh">➜  pyiceberg --output json describe nyc.taxis | jq
+{
+  &quot;identifier&quot;: [
+    &quot;nyc&quot;,
+    &quot;taxis&quot;
+  ],
+  &quot;metadata_location&quot;: &quot;file:/.../nyc.db/taxis/metadata/00000-aa3a3eac-ea08-4255-b890-383a64a94e42.metadata.json&quot;,
+  &quot;metadata&quot;: {
+    &quot;location&quot;: &quot;file:/.../nyc.db/taxis&quot;,
+    &quot;table-uuid&quot;: &quot;6cdfda33-bfa3-48a7-a09e-7abb462e3460&quot;,
+    &quot;last-updated-ms&quot;: 1661783158061,
+    &quot;last-column-id&quot;: 19,
+    &quot;schemas&quot;: [
+      {
+        &quot;type&quot;: &quot;struct&quot;,
+        &quot;fields&quot;: [
+          {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;VendorID&quot;,
+            &quot;type&quot;: &quot;long&quot;,
+            &quot;required&quot;: false
+          },
+...
+          {
+            &quot;id&quot;: 19,
+            &quot;name&quot;: &quot;airport_fee&quot;,
+            &quot;type&quot;: &quot;double&quot;,
+            &quot;required&quot;: false
+          }
+        ],
+        &quot;schema-id&quot;: 0,
+        &quot;identifier-field-ids&quot;: []
+      }
+    ],
+    &quot;current-schema-id&quot;: 0,
+    &quot;partition-specs&quot;: [
+      {
+        &quot;spec-id&quot;: 0,
+        &quot;fields&quot;: []
+      }
+    ],
+    &quot;default-spec-id&quot;: 0,
+    &quot;last-partition-id&quot;: 999,
+    &quot;properties&quot;: {
+      &quot;owner&quot;: &quot;root&quot;,
+      &quot;write.format.default&quot;: &quot;parquet&quot;
+    },
+    &quot;current-snapshot-id&quot;: 5937117119577207000,
+    &quot;snapshots&quot;: [
+      {
+        &quot;snapshot-id&quot;: 5937117119577207000,
+        &quot;timestamp-ms&quot;: 1661783158061,
+        &quot;manifest-list&quot;: &quot;file:/.../nyc.db/taxis/metadata/snap-5937117119577207079-1-94656c4f-4c66-4600-a4ca-f30377300527.avro&quot;,
+        &quot;summary&quot;: {
+          &quot;operation&quot;: &quot;append&quot;,
+          &quot;spark.app.id&quot;: &quot;local-1661783139151&quot;,
+          &quot;added-data-files&quot;: &quot;1&quot;,
+          &quot;added-records&quot;: &quot;2979431&quot;,
+          &quot;added-files-size&quot;: &quot;46600777&quot;,
+          &quot;changed-partition-count&quot;: &quot;1&quot;,
+          &quot;total-records&quot;: &quot;2979431&quot;,
+          &quot;total-files-size&quot;: &quot;46600777&quot;,
+          &quot;total-data-files&quot;: &quot;1&quot;,
+          &quot;total-delete-files&quot;: &quot;0&quot;,
+          &quot;total-position-deletes&quot;: &quot;0&quot;,
+          &quot;total-equality-deletes&quot;: &quot;0&quot;
+        },
+        &quot;schema-id&quot;: 0
+      }
+    ],
+    &quot;snapshot-log&quot;: [
+      {
+        &quot;snapshot-id&quot;: &quot;5937117119577207079&quot;,
+        &quot;timestamp-ms&quot;: 1661783158061
+      }
+    ],
+    &quot;metadata-log&quot;: [],
+    &quot;sort-orders&quot;: [
+      {
+        &quot;order-id&quot;: 0,
+        &quot;fields&quot;: []
+      }
+    ],
+    &quot;default-sort-order-id&quot;: 0,
+    &quot;refs&quot;: {
+      &quot;main&quot;: {
+        &quot;snapshot-id&quot;: 5937117119577207000,
+        &quot;type&quot;: &quot;branch&quot;
+      }
+    },
+    &quot;format-version&quot;: 1,
+    &quot;schema&quot;: {
+      &quot;type&quot;: &quot;struct&quot;,
+      &quot;fields&quot;: [
+        {
+          &quot;id&quot;: 1,
+          &quot;name&quot;: &quot;VendorID&quot;,
+          &quot;type&quot;: &quot;long&quot;,
+          &quot;required&quot;: false
+        },
+...
+        {
+          &quot;id&quot;: 19,
+          &quot;name&quot;: &quot;airport_fee&quot;,
+          &quot;type&quot;: &quot;double&quot;,
+          &quot;required&quot;: false
+        }
+      ],
+      &quot;schema-id&quot;: 0,
+      &quot;identifier-field-ids&quot;: []
+    },
+    &quot;partition-spec&quot;: []
+  }
+}
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../configuration/" class="btn btn-neutral float-left" title="Configuration"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../api/" class="btn btn-neutral float-right" title="API">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../configuration/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../api/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

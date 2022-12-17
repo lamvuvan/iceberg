@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://py.iceberg.apache.org/verify-release/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Verify a release - PyIceberg</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Verify a release";
+        var mkdocs_page_input_path = "verify-release.md";
+        var mkdocs_page_url = "/verify-release/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> PyIceberg
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../configuration/">Configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cli/">CLI</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api/">API</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Contributing</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../contributing/">Contributing</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../feature-support/">Feature support</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Releases</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Verify a release</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#validating-a-release-candidate">Validating a release candidate</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#verifying-signatures">Verifying signatures</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#verifying-checksums">Verifying checksums</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#verifying-license-documentation">Verifying License Documentation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#testing">Testing</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../how-to-release/">How to release</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">PyIceberg</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Releases &raquo;</li>
+      <li>Verify a release</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <!--
+  - Licensed to the Apache Software Foundation (ASF) under one
+  - or more contributor license agreements.  See the NOTICE file
+  - distributed with this work for additional information
+  - regarding copyright ownership.  The ASF licenses this file
+  - to you under the Apache License, Version 2.0 (the
+  - "License"); you may not use this file except in compliance
+  - with the License.  You may obtain a copy of the License at
+  -
+  -   http://www.apache.org/licenses/LICENSE-2.0
+  -
+  - Unless required by applicable law or agreed to in writing,
+  - software distributed under the License is distributed on an
+  - "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  - KIND, either express or implied.  See the License for the
+  - specific language governing permissions and limitations
+  - under the License.
+  -->
+
+<h1 id="verifying-a-release">Verifying a release</h1>
+<p>Each Apache PyIceberg release is validated by the community by holding a vote. A community release manager will prepare a release candidate and call a vote on the Iceberg dev list. To validate the release candidate, community members will test it out in their downstream projects and environments.</p>
+<p>In addition to testing in downstream projects, community members also check the release’s signatures, checksums, and license documentation.</p>
+<h2 id="validating-a-release-candidate">Validating a release candidate</h2>
+<p>Release announcements include links to the following:</p>
+<ul>
+<li>A source tarball</li>
+<li>A signature (.asc)</li>
+<li>A checksum (.sha512)</li>
+<li>KEYS file</li>
+<li>GitHub change comparison</li>
+</ul>
+<p>After downloading the source tarball, signature, checksum, and KEYS file, here are instructions on how to verify signatures, checksums, and documentation.</p>
+<h2 id="verifying-signatures">Verifying signatures</h2>
+<p>First, import the keys.</p>
+<pre><code class="language-sh">curl https://dist.apache.org/repos/dist/dev/iceberg/KEYS -o KEYS
+gpg --import KEYS
+</code></pre>
+<p>Next, verify the <code>.asc</code> file.</p>
+<pre><code class="language-sh">gpg --verify pyiceberg-0.2.0rc0-py3-none-any.whl.asc pyiceberg-0.2.0rc0-py3-none-any.whl
+</code></pre>
+<h2 id="verifying-checksums">Verifying checksums</h2>
+<pre><code class="language-sh">shasum -a 512 pyiceberg-0.2.0rc0.tar.gz
+</code></pre>
+<h2 id="verifying-license-documentation">Verifying License Documentation</h2>
+<pre><code class="language-sh">tar xzf pyiceberg-0.2.0rc0.tar.gztar
+cd pyiceberg-0.2.0
+</code></pre>
+<p>Run RAT checks to validate license header:</p>
+<pre><code>./dev/check-license
+</code></pre>
+<h2 id="testing">Testing</h2>
+<p>First step is to install the package:</p>
+<pre><code class="language-sh">make install
+</code></pre>
+<p>And then run the tests:</p>
+<pre><code class="language-sh">make test
+</code></pre>
+<p>To run the full integration tests:</p>
+<pre><code class="language-sh">make test-s3
+</code></pre>
+<p>This will include a Minio S3 container being spun up.</p>
+<h1 id="cast-the-vote">Cast the vote</h1>
+<p>Votes are cast by replying to the release candidate announcement email on the dev mailing list with either <code>+1</code>, <code>0</code>, or <code>-1</code>.</p>
+<blockquote>
+<p>[ ] +1 Release this as Apache Iceberg 1.1.0 [ ] +0 [ ] -1 Do not release this because…</p>
+</blockquote>
+<p>In addition to your vote, it’s customary to specify if your vote is binding or non-binding. Only members of the Project Management Committee have formally binding votes. If you’re unsure, you can specify that your vote is non-binding. To read more about voting in the Apache framework, checkout the <a href="https://www.apache.org/foundation/voting.html">Voting</a> information page on the Apache foundation’s website.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../feature-support/" class="btn btn-neutral float-left" title="Feature support"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../how-to-release/" class="btn btn-neutral float-right" title="How to release">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../feature-support/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../how-to-release/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

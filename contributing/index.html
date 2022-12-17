@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://py.iceberg.apache.org/contributing/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Contributing - PyIceberg</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Contributing";
+        var mkdocs_page_input_path = "contributing.md";
+        var mkdocs_page_url = "/contributing/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> PyIceberg
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../configuration/">Configuration</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cli/">CLI</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api/">API</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Contributing</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Contributing</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#linting">Linting</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#testing">Testing</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#code-standards">Code standards</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#api-compatibility">API Compatibility</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#type-annotations">Type annotations</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#third-party-libraries">Third party libraries</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../feature-support/">Feature support</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Releases</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../verify-release/">Verify a release</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../how-to-release/">How to release</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">PyIceberg</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Contributing &raquo;</li>
+      <li>Contributing</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <!--
+  - Licensed to the Apache Software Foundation (ASF) under one
+  - or more contributor license agreements.  See the NOTICE file
+  - distributed with this work for additional information
+  - regarding copyright ownership.  The ASF licenses this file
+  - to you under the Apache License, Version 2.0 (the
+  - "License"); you may not use this file except in compliance
+  - with the License.  You may obtain a copy of the License at
+  -
+  -   http://www.apache.org/licenses/LICENSE-2.0
+  -
+  - Unless required by applicable law or agreed to in writing,
+  - software distributed under the License is distributed on an
+  - "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  - KIND, either express or implied.  See the License for the
+  - specific language governing permissions and limitations
+  - under the License.
+  -->
+
+<h1 id="contributing-to-the-iceberg-python-library">Contributing to the Iceberg Python library</h1>
+<p>For the development, Poetry is used for packing and dependency management. You can install this using:</p>
+<pre><code class="language-bash">pip install poetry
+</code></pre>
+<p>If you have an older version of pip and virtualenv you need to update these:</p>
+<pre><code class="language-bash">pip install --upgrade virtualenv pip
+</code></pre>
+<p>To get started, you can run <code>make install</code>, which installs Poetry and all the dependencies of the Iceberg library. This also installs the development dependencies. If you don't want to install the development dependencies, you need to install using <code>poetry install --no-dev</code>.</p>
+<p>If you want to install the library on the host, you can simply run <code>pip3 install -e .</code>. If you wish to use a virtual environment, you can run <code>poetry shell</code>. Poetry will open up a virtual environment with all the dependencies set.</p>
+<p>To set up IDEA with Poetry (<a href="https://www.loom.com/share/6d36464d45f244729d91003e7f671fd2">also on Loom</a>):</p>
+<ul>
+<li>Open up the Python project in IntelliJ</li>
+<li>Make sure that you're on latest master (that includes Poetry)</li>
+<li>Go to File -&gt; Project Structure (⌘;)</li>
+<li>Go to Platform Settings -&gt; SDKs</li>
+<li>Click the + sign -&gt; Add Python SDK</li>
+<li>Select Poetry Environment from the left hand side bar and hit OK</li>
+<li>It can take some time to download all the dependencies based on your internet</li>
+<li>Go to Project Settings -&gt; Project</li>
+<li>Select the Poetry SDK from the SDK dropdown, and click OK</li>
+</ul>
+<p>For IDEA ≤2021 you need to install the <a href="https://plugins.jetbrains.com/plugin/14307-poetry/">Poetry integration as a plugin</a>.</p>
+<p>Now you're set using Poetry, and all the tests will run in Poetry, and you'll have syntax highlighting in the pyproject.toml to indicate stale dependencies.</p>
+<h2 id="linting">Linting</h2>
+<p><code>pre-commit</code> is used for autoformatting and linting:</p>
+<pre><code class="language-bash">make lint
+</code></pre>
+<p>Pre-commit will automatically fix the violations such as import orders, formatting etc. Pylint errors you need to fix yourself.</p>
+<p>In contrast to the name suggest, it doesn't run the checks on the commit. If this is something that you like, you can set this up by running <code>pre-commit install</code>.</p>
+<p>You can bump the integrations to the latest version using <code>pre-commit autoupdate</code>. This will check if there is a newer version of <code>{black,mypy,isort,...}</code> and update the yaml.</p>
+<h2 id="testing">Testing</h2>
+<p>For Python, <code>pytest</code> is used a testing framework in combination with <code>coverage</code> to enforce 90%+ code coverage.</p>
+<pre><code class="language-bash">make test
+</code></pre>
+<p>By default, S3 tests are ignored because that require minio to be running. To run the S3 suite:</p>
+<pre><code class="language-bash">make test-s3
+</code></pre>
+<p>To pass additional arguments to pytest, you can use <code>PYTEST_ARGS</code>.</p>
+<p><em>Run pytest in verbose mode</em></p>
+<pre><code class="language-sh">make test PYTEST_ARGS=&quot;-v&quot;
+</code></pre>
+<p><em>Run pytest with pdb enabled</em></p>
+<pre><code class="language-sh">make test PYTEST_ARGS=&quot;--pdb&quot;
+</code></pre>
+<p>To see all available pytest arguments, run <code>make test PYTEST_ARGS="--help"</code>.</p>
+<h2 id="code-standards">Code standards</h2>
+<p>Below are the formalized conventions that we adhere to in the PyIceberg project. The goal of this is to have a common agreement on how to evolve the codebase, but also using it as guidelines for newcomers to the project.</p>
+<h2 id="api-compatibility">API Compatibility</h2>
+<p>It is important to keep the Python public API compatible across versions. The Python official <a href="https://peps.python.org/pep-0008/">PEP-8</a> defines public methods as: <em>Public attributes should have no leading underscores</em>. This means not removing any methods without any notice, or removing or renaming any existing parameters. Adding new optional parameters is okay.</p>
+<p>If you want to remove a method, please add a deprecation notice by annotating the function using <code>@deprecated</code>:</p>
+<pre><code class="language-python">from pyiceberg.utils.deprecated import deprecated
+
+
+@deprecated(
+    deprecated_in=&quot;0.1.0&quot;,
+    removed_in=&quot;0.2.0&quot;,
+    help_message=&quot;Please use load_something_else() instead&quot;,
+)
+def load_something():
+    pass
+</code></pre>
+<p>Which will warn:</p>
+<pre><code>Call to load_something, deprecated in 0.1.0, will be removed in 0.2.0. Please use load_something_else() instead.
+</code></pre>
+<h2 id="type-annotations">Type annotations</h2>
+<p>For the type annotation the types from the <code>Typing</code> package are used.</p>
+<p>PyIceberg offers support from Python 3.8 onwards, we can't use the <a href="https://peps.python.org/pep-0585/">type hints from the standard collections</a>.</p>
+<h2 id="third-party-libraries">Third party libraries</h2>
+<p>PyIceberg naturally integrates into the rich Python ecosystem, however it is important to be hesistant to add third party packages. Adding a lot of packages makes the library heavyweight, and causes incompatibilities with other projects if they use a different version of the library. Also, big libraries such as <code>s3fs</code>, <code>pyarrow</code>, <code>thrift</code> should be optional to avoid downloading everything, while not being sure if is actually being used.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../api/" class="btn btn-neutral float-left" title="API"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../feature-support/" class="btn btn-neutral float-right" title="Feature support">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../api/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../feature-support/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
